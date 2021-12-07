@@ -1,10 +1,12 @@
 package com.example.trabajo2;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 
@@ -19,6 +21,9 @@ public class DetalleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
+        setTitle("Detalle");
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
         //String nombre =intent.getStringExtra("nombre");
@@ -40,5 +45,18 @@ public class DetalleActivity extends AppCompatActivity {
         Log.i("DetalleActivity","Nombre recibido:" + nombre);
 
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        switch(id){
+            case android.R.id.home:
+                finish();
+
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
