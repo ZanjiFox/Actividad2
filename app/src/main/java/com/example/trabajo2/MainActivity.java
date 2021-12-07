@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         ArrayAdapter<Contacto> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, contactos);
 
         lvContactos.setAdapter(adapter);
+        lvContactos.setOnItemClickListener(this);
 
 
 
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         Intent intent = new Intent(this,DetalleActivity.class);
         intent.putExtra("nombre", nombre);
+        intent.putExtra("contacto", contacto);
         startActivity(intent);
 
     }

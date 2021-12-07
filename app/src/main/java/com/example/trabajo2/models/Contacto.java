@@ -2,7 +2,9 @@ package com.example.trabajo2.models;
 
 import androidx.annotation.NonNull;
 
-public class Contacto {
+import java.io.Serializable;
+
+public class Contacto implements Serializable {
 
     String nombre;
     String paterno;
@@ -44,6 +46,6 @@ public class Contacto {
 
     @Override
     public String toString() {
-        return nombre+" "+paterno+" "+materno+" |"+telefono+"|";
+        return nombre+" "+paterno+" "+materno;
     }
 }
