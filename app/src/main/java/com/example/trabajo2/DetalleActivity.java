@@ -10,36 +10,33 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 
-import com.example.trabajo2.models.Contacto;
+
+import com.example.trabajo2.models.Pokemon;
 
 
 public class DetalleActivity extends AppCompatActivity {
 
-    TextView tvNombre, tvPaterno, tvMaterno, tvTelefono;
+    TextView tvNombre, tvEspecie,tvDescripcion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalle);
-        setTitle("Detalle");
+        setTitle("INFO");
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
-        //String nombre =intent.getStringExtra("nombre");
-
-        Contacto contacto = (Contacto) intent.getSerializableExtra("contacto");
-        String nombre = contacto.getNombre();
-
+        Pokemon pokemon = (Pokemon) intent.getSerializableExtra("pokemon");
+        String nombre = pokemon.getNumero() +" "+pokemon.getNombre();
+        String Descripcion = pokemon.getRdescripcion() + " | "+pokemon.getTipo()+" | ["+pokemon.getAltura()+" ] [ "+pokemon.getPeso()+" ]";
         tvNombre = findViewById(R.id.tvNombre);
-        tvPaterno = findViewById(R.id.tvPaterno);
-        tvMaterno = findViewById(R.id.tvMaterno);
-        tvTelefono = findViewById(R.id.tvTelefono);
+        tvEspecie = findViewById(R.id.tvEspecie);
+        tvDescripcion = findViewById(R.id.tvDescripcion);
 
         tvNombre.setText(nombre);
-        tvPaterno.setText(contacto.getPaterno());
-        tvMaterno.setText(contacto.getMaterno());
-        tvTelefono.setText(contacto.getTelefono());
+        tvEspecie.setText(Descripcion);
+        tvDescripcion.setText(pokemon.getDescripcion());
 
 
         Log.i("DetalleActivity","Nombre recibido:" + nombre);
