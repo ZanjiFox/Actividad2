@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Trabajo2">
         <activity
+            android:name=".AgregarPokemonActivity"
+            android:exported="false" />
+        <activity
             android:name=".DetalleActivity"
             android:exported="false" />
         <activity

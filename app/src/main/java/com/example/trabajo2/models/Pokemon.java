@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Pokemon implements Serializable {
 
+    long id;
     String nombre;
     String numero;
     String rdescripcion;
@@ -66,6 +67,14 @@ public class Pokemon implements Serializable {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     @Override

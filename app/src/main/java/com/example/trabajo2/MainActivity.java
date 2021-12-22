@@ -1,10 +1,14 @@
 package com.example.trabajo2;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,6 +16,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.trabajo2.adapters.PokedexAdapter;
+import com.example.trabajo2.db.PokemonDataSource;
 import com.example.trabajo2.models.Pokemon;
 
 import java.util.ArrayList;
@@ -19,8 +24,10 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
+    public static final int REQUEST_CODE_AGRAGAR_POKEMON = 1001;
     ListView lvPokedex;
     List<Pokemon> pokemons;
+    PokemonDataSource dataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +37,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         lvPokedex = findViewById(R.id.lvPokedex);
 
-        pokemons = new ArrayList<>();
+        dataSource = new PokemonDataSource(this);
+        dataSource.openDB();
 
-        Pokemon pokemon001 = new Pokemon();
+        pokemons = dataSource.obtenerPokemons();
+        dataSource.closeDB();
+
+        /*Pokemon pokemon001 = new Pokemon();
         pokemon001.setNombre("Bulbasaur");
         pokemon001.setNumero("N.°001");
         pokemon001.setRdescripcion("Pokemon semilla");
@@ -83,6 +94,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         pokemons.add(pokemon004);
         pokemons.add(pokemon005);
 
+         */
+
 
         //ArrayAdapter<Contacto> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, contactos);
 
@@ -90,6 +103,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         lvPokedex.setAdapter(adapter);
         lvPokedex.setOnItemClickListener(this);
+
+
 
 
 
@@ -109,5 +124,35 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         startActivity(intent);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main_activity,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+        switch(id){
+            case R.id.action_agregar_pokemon:
+
+                Intent intent = new Intent(this, AgregarPokemonActivity.class);
+                //startActivity(intent);
+                startActivityForResult(intent,REQUEST_CODE_AGRAGAR_POKEMON);
+                break;
+
+            default:
+
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
