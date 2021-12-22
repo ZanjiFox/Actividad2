@@ -89,4 +89,14 @@ public class PokemonDataSource {
 
         return pokemon;
     }
+
+    public boolean borrarPokemon(long id){
+
+        String donde = "id = " + id;
+        int resultado = db.delete("pokemon", donde, null);
+
+        return (resultado == 1);
+
+
+    }
 }

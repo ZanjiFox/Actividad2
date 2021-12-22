@@ -8,7 +8,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 public class PokemonDb extends SQLiteOpenHelper {
-
+    //pokemons
     public static String DATABASE_NAME = "pokemons.db";
     public static int VERSION = 1;
 

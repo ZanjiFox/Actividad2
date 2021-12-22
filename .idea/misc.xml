@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Carra/Documents/Trabajo2/app/src/main/res/drawable-anydpi/ic_action_borrar.xml" value="0.25104166666666666" />
+        <entry key="..\:/Users/Carra/Documents/Trabajo2/app/src/main/res/drawable-anydpi/ic_action_guardar.xml" value="0.25104166666666666" />
         <entry key="..\:/Users/Carra/Documents/Trabajo2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2203125" />
         <entry key="..\:/Users/Carra/Documents/Trabajo2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2203125" />
         <entry key="..\:/Users/Carra/Documents/Trabajo2/app/src/main/res/layout/activity_agregar_pokemon.xml" value="0.25" />
@@ -11,6 +13,7 @@
         <entry key="..\:/Users/Carra/Documents/Trabajo2/app/src/main/res/layout/contacto_item.xml" value="0.33" />
         <entry key="..\:/Users/Carra/Documents/Trabajo2/app/src/main/res/layout/pokemon_item.xml" value="0.5" />
         <entry key="..\:/Users/Carra/Documents/Trabajo2/app/src/main/res/menu/menu_agregar_pokemon_activity.xml" value="0.33" />
+        <entry key="..\:/Users/Carra/Documents/Trabajo2/app/src/main/res/menu/menu_detalle_activity.xml" value="0.22760416666666666" />
         <entry key="..\:/Users/Carra/Documents/Trabajo2/app/src/main/res/menu/menu_main_activity.xml" value="0.36666666666666664" />
       </map>
     </option>

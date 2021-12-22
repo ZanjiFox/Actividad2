@@ -25,9 +25,11 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     public static final int REQUEST_CODE_AGRAGAR_POKEMON = 1001;
+    public static final int REQUEST_CODE_DETALLE_ACTIVITY = 1002;
     ListView lvPokedex;
     List<Pokemon> pokemons;
     PokemonDataSource dataSource;
+    ArrayAdapter<Pokemon> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         pokemons = dataSource.obtenerPokemons();
         dataSource.closeDB();
-
+        //pertenece a actividad2
         /*Pokemon pokemon001 = new Pokemon();
         pokemon001.setNombre("Bulbasaur");
         pokemon001.setNumero("N.°001");
@@ -99,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         //ArrayAdapter<Contacto> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, contactos);
 
-        ArrayAdapter<Pokemon> adapter = new PokedexAdapter(this,R.layout.pokemon_item,pokemons);
+        adapter = new PokedexAdapter(this,R.layout.pokemon_item,pokemons);
 
         lvPokedex.setAdapter(adapter);
         lvPokedex.setOnItemClickListener(this);
@@ -116,13 +118,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         Pokemon pokemon = pokemons.get(i);
         String nombre = pokemon.getNombre();
         Log.i("MainActivity","Nombre: "+ nombre);
-        Toast.makeText(this,"Click en item" + i,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this,"Click en item" + i,Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(this,DetalleActivity.class);
         intent.putExtra("nombre", nombre);
         intent.putExtra("pokemon", pokemon);
 
-        startActivity(intent);
+        startActivityForResult(intent, REQUEST_CODE_DETALLE_ACTIVITY);
 
     }
 
@@ -154,5 +156,30 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == REQUEST_CODE_AGRAGAR_POKEMON && resultCode == 1){
+
+            Log.i("MainActivity","actualizar");
+
+            actaulizarPokemon();
+
+        }
+
+        if(requestCode == REQUEST_CODE_DETALLE_ACTIVITY && resultCode == -1){
+
+            //actualizar
+        }
+    }
+
+    public void actaulizarPokemon(){
+
+        dataSource.openDB();
+        pokemons = dataSource.obtenerPokemons();
+        dataSource.closeDB();
+
+        adapter.clear();
+        adapter.addAll(pokemons);
+        adapter.notifyDataSetChanged();
+
     }
 }
